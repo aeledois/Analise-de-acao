@@ -1,16 +1,26 @@
-
 import React, { useState, useCallback } from 'react';
-import { AnalysisResult, Recommendation } from './types';
+import { AnalysisResult, Ticker } from './types';
 import { getStockAnalysis } from './services/geminiService';
 import TickerSelector from './components/TickerSelector';
 import AnalysisDisplay from './components/AnalysisDisplay';
-import { STOCK_TICKERS } from './constants';
 import { LogoIcon, LoadingSpinner } from './components/icons';
+import { SP500_TICKERS } from './data/tickers';
 
 const App: React.FC = () => {
-  const [selectedTicker, setSelectedTicker] = useState<string>(STOCK_TICKERS[0].value);
+  const [tickers] = useState<Ticker[]>(SP500_TICKERS);
+  
+  const findDefaultTicker = () => {
+    if (tickers.length > 0) {
+      // Define um valor padrão, ex: Apple (AAPL) se disponível
+      const defaultTicker = tickers.find(t => t.value === 'AAPL') || tickers[0];
+      return defaultTicker.value;
+    }
+    return '';
+  };
+
+  const [selectedTicker, setSelectedTicker] = useState<string>(findDefaultTicker());
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleAnalysis = useCallback(async () => {
@@ -18,7 +28,7 @@ const App: React.FC = () => {
       setError("Por favor, selecione um ticker.");
       return;
     }
-    setIsLoading(true);
+    setIsAnalyzing(true);
     setError(null);
     setAnalysis(null);
     try {
@@ -28,22 +38,9 @@ const App: React.FC = () => {
       setError("Falha ao obter a análise. Verifique o console para mais detalhes.");
       console.error(err);
     } finally {
-      setIsLoading(false);
+      setIsAnalyzing(false);
     }
   }, [selectedTicker]);
-
-  const getRecommendationColor = (recommendation: Recommendation | undefined): string => {
-    switch (recommendation) {
-      case 'COMPRAR':
-        return 'bg-brand-green/10 text-brand-green border-brand-green/30';
-      case 'VENDER':
-        return 'bg-brand-red/10 text-brand-red border-brand-red/30';
-      case 'MANTER':
-        return 'bg-brand-gray/10 text-brand-gray border-brand-gray/30';
-      default:
-        return 'bg-dark-border text-dark-text-secondary';
-    }
-  };
 
   return (
     <div className="min-h-screen bg-dark-bg text-dark-text font-sans flex flex-col items-center p-4 sm:p-6 lg:p-8">
@@ -58,17 +55,18 @@ const App: React.FC = () => {
         <main>
           <div className="bg-dark-card rounded-xl shadow-2xl p-6 border border-dark-border">
             <p className="text-center text-dark-text-secondary mb-6">
-              Selecione um ticker de uma ação americana para obter uma análise completa e recomendação gerada por IA.
+              Selecione uma ação da lista S&P 500 para obter uma análise completa e recomendação gerada por IA.
             </p>
             <TickerSelector
+              tickers={tickers}
               selectedTicker={selectedTicker}
               onTickerChange={setSelectedTicker}
               onAnalyze={handleAnalysis}
-              isLoading={isLoading}
+              isAnalyzing={isAnalyzing}
             />
           </div>
 
-          {isLoading && (
+          {isAnalyzing && (
             <div className="flex flex-col items-center justify-center mt-12">
               <LoadingSpinner className="h-12 w-12 text-brand-blue" />
               <p className="mt-4 text-lg text-dark-text-secondary animate-pulse">
@@ -77,14 +75,14 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {error && (
+          {error && !isAnalyzing && (
             <div className="mt-8 text-center bg-red-900/50 text-red-300 p-4 rounded-lg border border-red-700">
               <h3 className="font-bold">Ocorreu um Erro</h3>
               <p>{error}</p>
             </div>
           )}
           
-          {analysis && !isLoading && (
+          {analysis && !isAnalyzing && (
             <AnalysisDisplay analysis={analysis} ticker={selectedTicker} />
           )}
 
