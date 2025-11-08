@@ -37,9 +37,25 @@ const analysisSchema = {
         },
         required: ['date', 'price']
       }
+    },
+    sentimentAnalysis: {
+      type: Type.OBJECT,
+      description: "Análise de sentimento baseada em notícias recentes.",
+      properties: {
+        sentiment: {
+          type: Type.STRING,
+          description: "O sentimento geral. Deve ser estritamente 'POSITIVO', 'NEGATIVO' ou 'NEUTRO'.",
+          enum: ['POSITIVO', 'NEGATIVO', 'NEUTRO'],
+        },
+        summary: {
+          type: Type.STRING,
+          description: "Um resumo conciso em português (máximo de 3 frases) explicando a base para o sentimento."
+        }
+      },
+      required: ['sentiment', 'summary']
     }
   },
-  required: ['recommendation', 'analysisText', 'historicalData']
+  required: ['recommendation', 'analysisText', 'historicalData', 'sentimentAnalysis']
 };
 
 export const getStockAnalysis = async (ticker: string): Promise<AnalysisResult> => {
@@ -51,6 +67,7 @@ export const getStockAnalysis = async (ticker: string): Promise<AnalysisResult> 
     1. Uma recomendação clara ('COMPRAR', 'VENDER' ou 'MANTER').
     2. Um parágrafo de análise fundamentalista e técnica explicando o porquê da recomendação.
     3. Dados históricos de preços de fechamento para os últimos 90 dias, com um ponto de dados para cada dia.
+    4. Uma análise de sentimento baseada nas notícias mais recentes sobre a empresa. Esta análise deve incluir um sentimento ('POSITIVO', 'NEGATIVO' ou 'NEUTRO') e um breve resumo (máximo de 3 frases) que justifique esse sentimento.
     
     O objeto JSON deve seguir estritamente o esquema fornecido. Não inclua nenhuma formatação markdown como \`\`\`json no início ou \`\`\` no final.
   `;
@@ -69,7 +86,7 @@ export const getStockAnalysis = async (ticker: string): Promise<AnalysisResult> 
     const result: AnalysisResult = JSON.parse(jsonText);
     
     // Validate the result structure again on the client side for robustness
-    if (!result.recommendation || !result.analysisText || !Array.isArray(result.historicalData)) {
+    if (!result.recommendation || !result.analysisText || !Array.isArray(result.historicalData) || !result.sentimentAnalysis) {
         throw new Error("Resposta da IA está malformada.");
     }
 

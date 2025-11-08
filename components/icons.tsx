@@ -32,6 +32,26 @@ export const HoldIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     </svg>
 );
 
+export const PositiveSentimentIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4.06 4.06 0 0 1-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+);
+
+export const NegativeSentimentIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 15s-1.5-2-4.5-2-4.5 2-4.5 2" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 10h.01M15 10h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+);
+
+export const NeutralSentimentIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 14.25h5m-12 1.5a9 9 0 1 1 18 0 9 9 0 0 1-18 0Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 10h.01M15 10h.01" />
+    </svg>
+);
+
 export const AnalysisIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path d="M8 56V8H56" stroke="#374151" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

@@ -93,7 +93,7 @@ const App: React.FC = () => {
                 Análise de Ações Potencializada por IA
               </h2>
               <p className="mt-2 text-md text-dark-text-secondary max-w-md">
-                Selecione uma empresa do S&P 500 para receber uma análise completa, incluindo recomendação de investimento e dados históricos.
+                Selecione uma empresa do S&P 500 para receber uma análise completa, incluindo recomendação de investimento, análise de sentimento e dados históricos.
               </p>
             </div>
           )}
