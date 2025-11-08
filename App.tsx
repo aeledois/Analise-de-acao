@@ -3,7 +3,7 @@ import { AnalysisResult, Ticker } from './types';
 import { getStockAnalysis } from './services/geminiService';
 import TickerSelector from './components/TickerSelector';
 import AnalysisDisplay from './components/AnalysisDisplay';
-import { LogoIcon, LoadingSpinner } from './components/icons';
+import { LogoIcon, LoadingSpinner, AnalysisIllustration } from './components/icons';
 import { SP500_TICKERS } from './data/tickers';
 
 const App: React.FC = () => {
@@ -86,6 +86,17 @@ const App: React.FC = () => {
             <AnalysisDisplay analysis={analysis} ticker={selectedTicker} />
           )}
 
+          {!isAnalyzing && !analysis && !error && (
+            <div className="flex flex-col items-center justify-center mt-12 text-center animate-fade-in">
+              <AnalysisIllustration className="h-48 w-48" />
+              <h2 className="mt-6 text-2xl font-semibold text-dark-text">
+                Análise de Ações Potencializada por IA
+              </h2>
+              <p className="mt-2 text-md text-dark-text-secondary max-w-md">
+                Selecione uma empresa do S&P 500 para receber uma análise completa, incluindo recomendação de investimento e dados históricos.
+              </p>
+            </div>
+          )}
         </main>
          <footer className="text-center mt-12 text-sm text-dark-text-secondary">
           <p>

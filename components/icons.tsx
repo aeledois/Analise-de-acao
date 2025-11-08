@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const LogoIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -32,3 +31,25 @@ export const HoldIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
         <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 11.667 0l3.182-3.182m0-4.991v4.99" />
     </svg>
 );
+
+export const AnalysisIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M8 56V8H56" stroke="#374151" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M16 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M24 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M32 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M40 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M48 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M8 48H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M8 40H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M8 32H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M8 24H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <path d="M8 16H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
+      <rect x="12" y="40" width="8" height="16" fill="#0052FF" opacity="0.6"/>
+      <rect x="22" y="32" width="8" height="24" fill="#0052FF" opacity="0.6"/>
+      <rect x="32" y="24" width="8" height="32" fill="#0052FF" opacity="0.6"/>
+      <rect x="42" y="16" width="8" height="40" fill="#10B981" opacity="0.8"/>
+      <path d="M48 8 L50 12 L54 14 L50 16 L48 20 L46 16 L42 14 L46 12 Z" fill="#60A5FA"/>
+      <path d="M12 28 L13 31 L15 32 L13 33 L12 36 L11 33 L9 32 L11 31 Z" fill="#60A5FA" opacity="0.7"/>
+    </svg>
+  );
