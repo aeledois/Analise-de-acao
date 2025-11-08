@@ -1,0 +1,5 @@
+{
+  "name": "Analisador de Ações com IA",
+  "description": "Um aplicativo da web que usa a API Gemini para fornecer análises de ações, recomendações e visualizações de dados para tickers de ações dos EUA.",
+  "requestFramePermissions": []
+}
