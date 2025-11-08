@@ -52,23 +52,35 @@ export const NeutralSentimentIcon: React.FC<React.SVGProps<SVGSVGElement>> = (pr
 );
 
 export const AnalysisIllustration: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path d="M8 56V8H56" stroke="#374151" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M16 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M24 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M32 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M40 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M48 56V8" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M8 48H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M8 40H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M8 32H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M8 24H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <path d="M8 16H56" stroke="#374151" strokeWidth="1" strokeDasharray="2 2"/>
-      <rect x="12" y="40" width="8" height="16" fill="#0052FF" opacity="0.6"/>
-      <rect x="22" y="32" width="8" height="24" fill="#0052FF" opacity="0.6"/>
-      <rect x="32" y="24" width="8" height="32" fill="#0052FF" opacity="0.6"/>
-      <rect x="42" y="16" width="8" height="40" fill="#10B981" opacity="0.8"/>
-      <path d="M48 8 L50 12 L54 14 L50 16 L48 20 L46 16 L42 14 L46 12 Z" fill="#60A5FA"/>
-      <path d="M12 28 L13 31 L15 32 L13 33 L12 36 L11 33 L9 32 L11 31 Z" fill="#60A5FA" opacity="0.7"/>
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" {...props}>
+        <defs>
+            <linearGradient id="lineChartGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#10B981" stopOpacity="0.4"/>
+                <stop offset="100%" stopColor="#10B981" stopOpacity="0"/>
+            </linearGradient>
+        </defs>
+        
+        <rect x="1" y="1" width="198" height="118" rx="8" fill="#1F2937" stroke="#374151" strokeWidth="1.5" />
+        
+        {/* Line Chart */}
+        <g transform="translate(20, 20)">
+            <path d="M 0 80 L 15 70 L 30 75 L 45 60 L 60 50 L 75 40 L 90 20" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 0 80 L 15 70 L 30 75 L 45 60 L 60 50 L 75 40 L 90 20 V 80 H 0 Z" fill="url(#lineChartGradient)" />
+            <line x1="0" y1="80" x2="95" y2="80" stroke="#6B7280" strokeWidth="1.5" />
+            <line x1="0" y1="15" x2="0" y2="80" stroke="#6B7280" strokeWidth="1.5" />
+        </g>
+
+        {/* Pie Chart */}
+        <g transform="translate(150, 60)">
+            <circle cx="0" cy="0" r="30" fill="#0052FF" />
+            <path d="M 0 0 L 30 0 A 30 30 0 0 1 -15 25.98 Z" fill="#3B82F6" />
+            <path d="M 0 0 L -15 25.98 A 30 30 0 0 1 -25.98 -15 Z" fill="#6B7280" />
+        </g>
+        
+        {/* Magnifying Glass */}
+        <g transform="translate(130, 25)">
+            <circle cx="0" cy="0" r="10" fill="none" stroke="#9CA3AF" strokeWidth="2" />
+            <line x1="8" y1="8" x2="15" y2="15" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" />
+        </g>
     </svg>
-  );
+);
